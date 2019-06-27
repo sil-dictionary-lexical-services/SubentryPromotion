@@ -37,6 +37,8 @@ my $USAGE = "Usage: $0 [--inifile se2lx.ini] [--section se2lx_ls] [--debug] [fil
 #        promoted.sfm: output file with promoted entries, if not redirected as shown, output to STDOUT
 #     Because the script reads STDIN and writes to STDOUT, you can pipe multiple runs like this:
 #     cat nopromo.sfm | perl -f se2lx.pl --section se2lx_ls | perl -f se2lx.pl --section se2lx_ld >ls-ld-promo.sfm
+#
+# Promoted subentries are written out in the order they occur following the main entry 
 
 =pod
 Here is a sample INI file with a couple of sections
