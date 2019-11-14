@@ -1,5 +1,7 @@
 #!/usr/bin/perl
-my $USAGE = "Usage: $0 [--inifile se2lx.ini] [--section se2lx_ls] [--debug] [file.sfm]";
+my $USAGE = "Usage: $0 [--inifile se2lx.ini] [--section se2lx_ls] [--debug] [infile.sfm]";
+# Reads from an input SFM file (SDTIN if not specified on the command line)
+# Outputs to STDOUT
 # Removes subentry fields from an SFM Lexical file and promotes
 # them to \lx entries.
 # Applies to all subentry fields.  Doesn't differentiate whether it
