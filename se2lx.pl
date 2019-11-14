@@ -196,7 +196,7 @@ for my $oplline (@opledfile_in) {
 	#$hmno="";
 	if ($oplline =~ /\\hm ([^#]*?)#/) {
 		$hmno= $1;
-		print STDERR "hm=[$hmno]\n" if $$debug;
+		print STDERR "hm=[$hmno]\n" if $debug;
 		}
 
 	# Process date markers if the ini file specified it.
