@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 # perl ./hackFWvariants.pl
+
+my $debug=1;
+
 use 5.016;
 use strict;
 use warnings;
