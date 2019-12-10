@@ -19,12 +19,13 @@ use Config::Tiny;
  # infilename=Nktest.fwdata
  # outfilename=Nktest.new.fwdata
 my $configfile = 'PromoteSubentries.ini';
+my $inisection = 'hackFWvariants';
 my $config = Config::Tiny->read($configfile, 'crlf');
 #ToDo: should also use GetOpt::Long instead of setting variables as above
 #ToDo: get the pathname of the INI file from $0 so that the two go together
 die "Couldn't find the INI file\nQuitting" if !$config;
-my $infilename = $config->{hackFWvariants}->{infilename};
-my $outfilename = $config->{hackFWvariants}->{outfilename};
+my $infilename = $config->{$inisection}->{infilename};
+my $outfilename = $config->{$inisection}->{outfilename};
 
 my $lockfile = $infilename . '.lock' ;
 die "A lockfile exists: $lockfile\
@@ -32,15 +33,15 @@ Don't run $0 when FW is running.\
 Run it on a copy of the project, not the original!\
 I'm quitting" if -f $lockfile ;
 
-my $modelmax= $config->{hackFWvariants}->{numberofmodels};
+my $modelmax= $config->{$inisection}->{numberofmodels};
 my $modeltag;
 my $modifytag;
 my $modelcount;
 for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	my $thistag = 'modeltag' . $modelcount;
-	$modeltag = $config->{hackFWvariants}->{$thistag};
+	$modeltag = $config->{$inisection}->{$thistag};
 	$thistag = 'modifytag' . $modelcount;
-	$modifytag = $config->{hackFWvariants}->{$thistag};
+	$modifytag = $config->{$inisection}->{$thistag};
 
 	if ( (index($modeltag, $modifytag) != -1) or  (index($modifytag, $modeltag) != -1)) {
 	# use index because Xpath doesn't use regex and we use Xpath to query the FW project
@@ -61,9 +62,9 @@ foreach my $rt ($fwdatatree->findnodes(q#//rt#)) {
 	}
 for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	my $thistag = 'modeltag' . $modelcount;
-	$modeltag = $config->{hackFWvariants}->{$thistag};
+	$modeltag = $config->{$inisection}->{$thistag};
 	$thistag = 'modifytag' . $modelcount;
-	$modifytag = $config->{hackFWvariants}->{$thistag};
+	$modifytag = $config->{$inisection}->{$thistag};
 	say 'modelcount=', $modelcount if $debug;
 	say 'modeltag=', $modeltag if $debug;
 	say 'modifytag=', $modifytag if $debug;
