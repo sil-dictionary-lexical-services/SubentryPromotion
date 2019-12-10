@@ -43,13 +43,20 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	$modeltag = $config->{$inisection}->{$thistag};
 	$thistag = 'modifytag' . $modelcount;
 	$modifytag = $config->{$inisection}->{$thistag};
+	if ( (!defined $modeltag) || (!defined $modifytag)) {
+		say STDERR "Skipping Model #$modelcount";
+		next;
+		}
 
 	if ( (index($modeltag, $modifytag) != -1) or  (index($modifytag, $modeltag) != -1)) {
 	# use index because Xpath doesn't use regex and we use Xpath to query the FW project
-		say STDERR 'Use different tags for modeltag and modifytag. One contains the other:';
-		say STDERR 'modeltag=', $modeltag;
-		say STDERR 'modifytag=', $modifytag;
-		die;
+	# BUG: should check each modifytag against all the modeltags and other modifytags
+		say STDERR "Use different tags for modeltag and modifytag. One contains the other in entry #$modelcount:";
+		say STDERR "modeltag$modelcount=", $modeltag;
+		say STDERR "tag$modelcount=", $modifytag;
+		say STDERR "Ignoring entry #$modelcount";
+		delete $config->{$inisection}->{"modeltag$modelcount"};
+		delete $config->{$inisection}->{"modifytag$modelcount"};
 		}
 	}
 say "Processing fwdata file: $infilename";
@@ -66,14 +73,14 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	$modeltag = $config->{$inisection}->{$thistag};
 	$thistag = 'modifytag' . $modelcount;
 	$modifytag = $config->{$inisection}->{$thistag};
-	say 'modelcount=', $modelcount if $debug;
-	say 'modeltag=', $modeltag if $debug;
-	say 'modifytag=', $modifytag if $debug;
+	next if ( (!defined $modeltag) || (!defined $modifytag));
+	say "modeltag$modelcount=", $modeltag if $debug;
+	say "modifytag$modelcount=", $modifytag if $debug;
 
 	my ($modelTextrt) = $fwdatatree->findnodes(q#//*[contains(., '# . $modeltag . q#')]/ancestor::rt#);
 	if (!$modelTextrt) {
 		say "The model, '", $modeltag, "' isn't in any records";
-		exit;
+		next;
 		}
 	# say  rtheader($modelTextrt) ;
 
