@@ -45,9 +45,9 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 
 	if ( (index($modeltag, $modifytag) != -1) or  (index($modifytag, $modeltag) != -1)) {
 	# use index because Xpath doesn't use regex and we use Xpath to query the FW project
-		say 'Use different tags for modeltag and modifytag. One contains the other:';
-		say 'modeltag=', $modeltag;
-		say 'modifytag=', $modifytag;
+		say STDERR 'Use different tags for modeltag and modifytag. One contains the other:';
+		say STDERR 'modeltag=', $modeltag;
+		say STDERR 'modifytag=', $modifytag;
 		die;
 		}
 	}
