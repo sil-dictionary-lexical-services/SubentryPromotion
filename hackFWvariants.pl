@@ -10,7 +10,7 @@ use utf8;
 
 use open qw/:std :utf8/;
 use XML::LibXML;
-# Todo put these in an .ini file and use  Config::Tiny 
+
 use Config::Tiny;
  # ; hackFWvariants.ini file looks like:
  # [hackFWvariants]
@@ -20,6 +20,7 @@ use Config::Tiny;
  # outfilename=Nktest.new.fwdata
 my $configfile = 'PromoteSubentries.ini';
 my $config = Config::Tiny->read($configfile, 'crlf');
+#ToDo: should also use GetOpt::Long instead of setting variables as above
 #ToDo: get the pathname of the INI file from $0 so that the two go together
 die "Couldn't find the INI file\nQuitting" if !$config;
 my $infilename = $config->{hackFWvariants}->{infilename};
