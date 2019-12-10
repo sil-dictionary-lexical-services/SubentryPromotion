@@ -34,6 +34,7 @@ Run it on a copy of the project, not the original!\
 I'm quitting" if -f $lockfile ;
 
 my $modelmax= $config->{$inisection}->{numberofmodels};
+die "numberofmodels not specified" if !defined $modelmax;
 my $modeltag;
 my $modifytag;
 my $modelcount;
