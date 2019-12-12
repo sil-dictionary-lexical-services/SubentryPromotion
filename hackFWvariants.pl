@@ -79,13 +79,15 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 
 	my ($modelTextrt) = $fwdatatree->findnodes(q#//*[contains(., '# . $modeltag . q#')]/ancestor::rt#);
 	if (!$modelTextrt) {
-		say "The model, '", $modeltag, "' isn't in any records";
+		say "";
+		say "The model #$modelcount, \"$modeltag\" isn't in any records";
 		next;
 		}
 	# say  rtheader($modelTextrt) ;
 
 	my ($modelOwnerrt) = traverseuptoclass($modelTextrt, 'LexEntry');
-	say  'For the model entry, using:', displaylexentstring($modelOwnerrt);
+	say ""; say "For the model #$modelcount, using tag:\"$modeltag\", found the tag in the entry:";
+	say "    ", displaylexentstring($modelOwnerrt);
 
 	my $modelentryref = $rthash{$modelOwnerrt->findvalue('./EntryRefs/objsur/@guid')};
 	my $modelEntryTypeName;
@@ -93,7 +95,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		# Fetch the name of the ComplexEntryType that the model uses
 		my $modelEntryTypert = $rthash{$modelentryref->findvalue('./ComplexEntryTypes/objsur/@guid')};
 		$modelEntryTypeName = $modelEntryTypert->findvalue('./Name/AUni'); 
-		say "It has a $modelEntryTypeName EntryType";
+		say "It has a \"$modelEntryTypeName\" EntryType";
 		}
 	else {
 		say "The model entry with the tag:$modeltag doesn't refer to another entry. Check that entry in the FLEx database.";
@@ -103,9 +105,10 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	my ($modelHideMinorEntryval) = $modelentryref->findvalue('./HideMinorEntry/@val');
 	my ($modelRefTypeval) = $modelentryref->findvalue('./RefType/@val');
 	my $modelComplexEntryTypesstring= ($modelentryref->findnodes('./ComplexEntryTypes'))[0]->toString;
+	$modelComplexEntryTypesstring =~ m/guid=\"(.*?)\"/;
+	my $modelCETguid = $1;
 	my ($modelHasAPrimaryLexemes) = $modelentryref->findnodes('./PrimaryLexemes') ;
 	my ($modelHasAShowComplexFormsIn) = $modelentryref->findnodes('./ShowComplexFormsIn');
-	say ''; say '';
 =pod
 	say 'Found the model stuff:';
 	say 'HideMinorEntry val:', $modelHideMinorEntryval;
@@ -119,26 +122,45 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	my @modifyrts = $fwdatatree->findnodes(q#//*[contains(., '# . $modifytag . q#')]/ancestor::rt#);
 	say "Searching for entries containing \"$modifytag\", found ", scalar @modifyrts, " records";
 	say '';
+	my $modifycount = 0;
 	foreach my $seToModifyTextrt (@modifyrts) {
 		my ($seModifyOwnerrt) = traverseuptoclass($seToModifyTextrt, 'LexEntry'); 
-		say  "Modifying Reference to a $modelEntryTypeName for:", displaylexentstring($seModifyOwnerrt) ;	
+		$modifycount++;
+		say  "Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
+		say "    ", displaylexentstring($seModifyOwnerrt);
 		my $entryreftomodify = $rthash{$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')};
-		# say 'EntryRefToModify Before: ', $entryreftomodify;
+		# say "EntryRefToModify Before: $entryreftomodify" if $debug;
 		if (!$entryreftomodify->findnodes('./ComponentLexemes')) {
-			say STDERR "No Component Lexemes for: ", displaylexentstring($seModifyOwnerrt);
+			say STDERR "Found \"$modifytag\" but no Component Lexemes in :";
+			say STDERR "    ", displaylexentstring($seModifyOwnerrt);
 			next;
 			}
-		# Attribute values are done in place
-		(my $attr) = $entryreftomodify->findnodes('./HideMinorEntry/@val');
-		$attr->setValue($modelHideMinorEntryval) if $attr; 
-		($attr) = $entryreftomodify->findnodes('./RefType/@val');
-		$attr->setValue($modelRefTypeval) if $attr; 
-		
+
 		# New nodes are built from strings and inserted in order
 		my $newnode = XML::LibXML->load_xml(string => $modelComplexEntryTypesstring)->findnodes('//*')->[0];
 		# the above expression makes a new tree from the model ComplexEntryTypestring
+
+		if (my ($CETnode) = $entryreftomodify->findnodes('./ComplexEntryTypes')) {
+			say "Entry #$modifycount already has Complex type(s)";
+			my $CETguids= $entryreftomodify->findvalue('./ComplexEntryTypes/objsur/@guid');
+			# All the guids concatenated
+			say "CET guids:", $CETguids if $debug;
+			say "model guid:", $modelCETguid if $debug;
+			say "CET node", $CETnode if $debug;
+			if ($CETguids =~ m/$modelCETguid/) {
+				say "    and \"$modelEntryTypeName\" is already in the list";
+				}
+			else {
+				my ($newCETobjsur) = $newnode->findnodes('./objsur');
+				$CETnode->appendChild($newCETobjsur);
+				say "    Added \"$modelEntryTypeName\" to the list";
+				say "CET node", $CETnode if $debug;
+				}
+			next;
+			}
+
 		$entryreftomodify->insertBefore($newnode, ($entryreftomodify->findnodes('./ComponentLexemes'))[0]);
-		
+
 		# Additional new nodes use the objsur@guid from the ComponentLexemes
 		# Stringify the ComponentLexemes node, change the tags, nodify the changed string and put the new node in its place
 		my ($CLstring) = ($entryreftomodify->findnodes('./ComponentLexemes'))[0]->toString;
@@ -154,6 +176,13 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 			$newnode = XML::LibXML->load_xml(string => $tempstring)->findnodes('//*')->[0];
 			$entryreftomodify->insertAfter($newnode, ($entryreftomodify->findnodes('./RefType'))[0]);
 			}
+
+		# Attribute values are done in place
+		(my $attr) = $entryreftomodify->findnodes('./HideMinorEntry/@val');
+		$attr->setValue($modelHideMinorEntryval) if $attr;
+		($attr) = $entryreftomodify->findnodes('./RefType/@val');
+		$attr->setValue($modelRefTypeval) if $attr;
+
 		# remove the VariantEntryTypes (VET) node if it's there
 		my ($VETnode) = $entryreftomodify->findnodes('./VariantEntryTypes') ;
 			$VETnode->parentNode->removeChild($VETnode) if $VETnode ;
@@ -172,6 +201,7 @@ my $xmlstring = $fwdatatree->toString;
 $xmlstring =~ s#><#>\n<#g;
 $xmlstring =~ s#(<Run.*?)/\>#$1\>\</Run\>#g;
 $xmlstring =~ s#/># />#g;
+say "";
 say "Finished processing, writing modified  $outfilename" ;
 open my $out_fh, '>:raw', $outfilename;
 print {$out_fh} $xmlstring;
@@ -212,5 +242,5 @@ my ($formstring) =($rthash{$formguid}->findnodes('./Form/AUni/text()'))[0]->toSt
 my ($homographno) = $lexentrt->findvalue('./HomographNumber/@val');
 
 my $guid = $lexentrt->getAttribute('guid');
-return qq#$formstring hm:$homographno (guid="$guid")#;
+return qq#$formstring # . ($homographno ? qq#hm:$homographno #  : "") . qq#(guid="$guid")#;
 }
