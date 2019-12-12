@@ -96,7 +96,9 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		say "It has a $modelEntryTypeName EntryType";
 		}
 	else {
-		die "The model entry doesn't refer to another entry\nQuitting";
+		say "The model entry with the tag:$modeltag doesn't refer to another entry. Check that entry in the FLEx database.";
+		say "Ignoring that tag";
+		next;
 	}
 	my ($modelHideMinorEntryval) = $modelentryref->findvalue('./HideMinorEntry/@val');
 	my ($modelRefTypeval) = $modelentryref->findvalue('./RefType/@val');
