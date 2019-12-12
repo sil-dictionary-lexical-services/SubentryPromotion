@@ -116,7 +116,10 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	say 'End of the model stuff:';
 =cut
 
-	foreach my $seToModifyTextrt ($fwdatatree->findnodes(q#//*[contains(., '# . $modifytag . q#')]/ancestor::rt#)) {
+	my @modifyrts = $fwdatatree->findnodes(q#//*[contains(., '# . $modifytag . q#')]/ancestor::rt#);
+	say "Searching for entries containing \"$modifytag\", found ", scalar @modifyrts, " records";
+	say '';
+	foreach my $seToModifyTextrt (@modifyrts) {
 		my ($seModifyOwnerrt) = traverseuptoclass($seToModifyTextrt, 'LexEntry'); 
 		say  "Modifying Reference to a $modelEntryTypeName for:", displaylexentstring($seModifyOwnerrt) ;	
 		my $entryreftomodify = $rthash{$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')};
