@@ -128,6 +128,14 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		$modifycount++;
 		say  "Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
 		say "    ", displaylexentstring($seModifyOwnerrt);
+		if (!$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')) {
+			say STDERR "The entry containing \"$modifytag\":";
+			say STDERR "    ", displaylexentstring($seModifyOwnerrt);
+			say STDERR "is a main entry (no EntryRefs)";
+
+			say "No changes made to that entry see error log.";
+			next;
+			}
 		my $entryreftomodify = $rthash{$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')};
 		# say "EntryRefToModify Before: $entryreftomodify" if $debug;
 		if (!$entryreftomodify->findnodes('./ComponentLexemes')) {
