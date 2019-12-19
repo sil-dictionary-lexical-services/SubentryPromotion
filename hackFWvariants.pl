@@ -81,7 +81,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	if (!$modelTextrt) {
 		say STDERR "";
 		say STDERR  "The model #$modelcount, \"$modeltag\" isn't in any records";
-		say  "The model #$modelcount, \"$modeltag\" not processed check error listing";
+		say  "The model #$modelcount, \"$modeltag\" was not processed. Check error listing";
 		next;
 		}
 	# say  rtheader($modelTextrt) ;
@@ -89,8 +89,8 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	my ($modelOwnerrt) = traverseuptoclass($modelTextrt, 'LexEntry');
 	if ($modelOwnerrt->getAttribute('class') ne 'LexEntry') {
 		say STDERR "";
-		say STDERR  "The model #$modelcount, \"$modeltag\" wasn't found first in a Lexical Entry it will be ignored";
-		say "The model #$modelcount, \"$modeltag\" not processed check error listing";
+		say STDERR "The first time that Model #$modelcount, \"$modeltag\" was found, it was in a record that's not a  Lexical Entry. Model #$modelcount will be ignored.";
+		say "The model #$modelcount, \"$modeltag\" was not processed. Check the error listing.";
 		next;
 		}
 	say ""; say "For the model #$modelcount, using tag:\"$modeltag\", found the tag in the entry:";
@@ -136,10 +136,8 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		say  "Model #$modelcount, Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
 		say "    ", displaylexentstring($seModifyOwnerrt);
 		if (!$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')) {
-			say STDERR "The entry containing \"$modifytag\":";
+			say STDERR "Model #$modelcount, Entry #$modifycount, Tag \"$modifytag\" is a main entry (no EntryRefs):";
 			say STDERR "    ", displaylexentstring($seModifyOwnerrt);
-			say STDERR "is a main entry (no EntryRefs)";
-
 			say "No changes made to that entry see error log.";
 			next;
 			}
