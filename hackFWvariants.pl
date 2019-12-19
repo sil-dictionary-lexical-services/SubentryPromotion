@@ -79,8 +79,9 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 
 	my ($modelTextrt) = $fwdatatree->findnodes(q#//*[contains(., '# . $modeltag . q#')]/ancestor::rt#);
 	if (!$modelTextrt) {
-		say "";
-		say "The model #$modelcount, \"$modeltag\" isn't in any records";
+		say STDERR "";
+		say STDERR  "The model #$modelcount, \"$modeltag\" isn't in any records";
+		say  "The model #$modelcount, \"$modeltag\" not processed check error listing";
 		next;
 		}
 	# say  rtheader($modelTextrt) ;
