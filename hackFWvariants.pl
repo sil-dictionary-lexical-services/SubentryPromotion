@@ -126,7 +126,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	foreach my $seToModifyTextrt (@modifyrts) {
 		my ($seModifyOwnerrt) = traverseuptoclass($seToModifyTextrt, 'LexEntry'); 
 		$modifycount++;
-		say  "Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
+		say  "Model #$modelcount, Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
 		say "    ", displaylexentstring($seModifyOwnerrt);
 		if (!$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')) {
 			say STDERR "The entry containing \"$modifytag\":";
