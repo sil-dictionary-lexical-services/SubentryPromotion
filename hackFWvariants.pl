@@ -133,6 +133,12 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	foreach my $seToModifyTextrt (@modifyrts) {
 		my ($seModifyOwnerrt) = traverseuptoclass($seToModifyTextrt, 'LexEntry'); 
 		$modifycount++;
+		if ($seModifyOwnerrt->getAttribute('class') ne 'LexEntry') {
+			say STDERR "";
+			say STDERR "Model #$modelcount, Entry #$modifycount,\"$modifytag\"  wasn't in a Lexical Entry. It will be ignored.";
+			say "Model #$modelcount, Entry #$modifycount,\"$modifytag\" was not processed. Check the error listing";
+			next;
+			}
 		say  "Model #$modelcount, Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
 		say "    ", displaylexentstring($seModifyOwnerrt);
 		if (!$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')) {
