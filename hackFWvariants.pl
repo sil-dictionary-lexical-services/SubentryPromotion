@@ -87,6 +87,12 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	# say  rtheader($modelTextrt) ;
 
 	my ($modelOwnerrt) = traverseuptoclass($modelTextrt, 'LexEntry');
+	if ($modelOwnerrt->getAttribute('class') ne 'LexEntry') {
+		say STDERR "";
+		say STDERR  "The model #$modelcount, \"$modeltag\" wasn't found first in a Lexical Entry it will be ignored";
+		say "The model #$modelcount, \"$modeltag\" not processed check error listing";
+		next;
+		}
 	say ""; say "For the model #$modelcount, using tag:\"$modeltag\", found the tag in the entry:";
 	say "    ", displaylexentstring($modelOwnerrt);
 
