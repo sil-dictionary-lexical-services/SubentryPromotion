@@ -75,35 +75,54 @@ The current FieldWorks (v 8.3.1beta) SFM import assumes that all refences to oth
 <h4>Preprocess</h4>
 
 <p>
-In FLex make a FW entry that looks the way you want your subentries to look. This can be a dummy entry that's deleted when you've changed the subentries. <br>
-Somewhere in the Entry put some unique text.<br>
+In FLex make FW entries that look the way you want your subentries to look. These should be dummy entries that are deleted when you've changed the subentries.<br>
+Somewhere in each Entry put some unique text.<br>
+ Before you create the Entry, you may want to search the fwdata file to make sure that text is unique. The script looks for all occurences of the supposedly unique text. If the first occurence isn't somewhere in an entry. It will ignore that model. For example, you wouldn't want to use "model" because that occurs multiple times in the Semantic Domain list and in Grammatical categories.<br>
+ The same constraint is also true of the modify tags.<br>
 <div style='padding-left: 30pt'>
 E.g., "*<b>Model Unspecified Complex Entry</b>*" in the Import Residue field
 </div>
-In the script this is called ModelTag. # It marks the lexical entry that has the model reference to another entry
+In the INI file this is called  a <b>modeltag</b>. # It marks the lexical entry that has the model reference to another entry.
 </p>
 
 <p>
-In FLex, or the imported SFM file, or perl script that builds it, put a text into each sub-entry that will be changed into the Model type of Reference<br>
+In FLex, or the imported SFM file, or perl script that builds it, put a text into each sub-entry that will be changed into the Model type of Reference.<br>
 <div style='padding-left: 30pt'>
 E.g. "<b>Complex_Form</b>" in the Import Residue field; \ve Complex_Form in the SFM file
 </div>
-In the script this is called ModifyTag. It marks all the entries that should be changed to the model
+In the INI file this is called <b>modifytag</b>. It marks all the entries that should be changed to the model.
 </p>
-
 <p>
-This script will find all the  Entries that contain the ModifyTag<br>
-It will convert their references to their main entries so they are same type as the Model Entry.
+This script handles multiple models and corresponding modifytags. It also requires you to specify how many tag pairs there are.
+</p>
+<p>
+This script will find all the entries that contain the modifytag<br>
+It will convert their references to their main entries so they are same type as the model entry.
 </p>
 
 <h4>Inputs with examples (see the ini file)</h4>
 
 <p>
 [hackFWvariants]<br>
-modeltag="<b>Model Unspecified Complex Entry</b>"<br>
-modifytag="<b>Complex_Form</b>"<br>
+#To renumber run this oneliner over the INI file:<br>
+#perl -pE 'BEGIN {$t1=$t2=1;} s/^modeltag[0-9]*/modeltag$t1/ && $t1++; s/^modifytag[0-9]*/modifytag$t2/ && $t2++;  $t=$t1-1; s/^numberofmodels.*/numberofmodels\=$t/'<br><br>
 infilename=Nktest.fwdata<br>
-outfilename=Nktest.new.fwdata
+outfilename=Nktest.new.fwdata<br><br>
+modeltag1=<b>Model Compound</b><br>
+modifytag1=<b>_Compound_</b><br><br>
+modeltag2=<b>Model Contraction</b><br>
+modifytag2=<b>_Contraction_</b><br><br>
+modeltag3=<b>Model Derivative</b><br>
+modifytag3=<b>_Derivative_</b><br><br>
+modeltag4=<b>Model Idiom</b><br>
+modifytag4=<b>_Idiom_</b><br><br>
+modeltag5=<b>Model Phrasal Verb</b><br>
+modifytag5=<b>Phrasal_Verb</b><br><br>
+modeltag6=<b>Model Saying</b><br>
+modifytag6=<b>_Saying_</b><br><br>
+modeltag7=<b>Model Unspecified Complex Entry</b><br>
+modifytag7=<b>Complex_Form</b><br><br>
+numberofmodels=<b>7</b>
 </p>
 
 <h4>The script:</h4>
