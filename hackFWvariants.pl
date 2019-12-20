@@ -6,6 +6,8 @@ my $debug=0;
 use 5.016;
 use strict;
 use warnings;
+use English;
+use Data::Dumper qw(Dumper);
 use utf8;
 
 use open qw/:std :utf8/;
