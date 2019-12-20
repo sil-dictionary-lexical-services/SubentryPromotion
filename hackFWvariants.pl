@@ -14,13 +14,13 @@ use open qw/:std :utf8/;
 use XML::LibXML;
 
 use Config::Tiny;
- # ; hackFWvariants.ini file looks like:
+my $configfile = 'PromoteSubentries.ini';
+ # ; PromoteSubentries.ini file looks like:
  # [hackFWvariants]
  # modeltag=Model Unspecified Complex Entry
  # modifytag=Complex_Form
  # infilename=Nktest.fwdata
  # outfilename=Nktest.new.fwdata
-my $configfile = 'PromoteSubentries.ini';
 my $inisection = 'hackFWvariants';
 my $config = Config::Tiny->read($configfile, 'crlf');
 #ToDo: should also use GetOpt::Long instead of setting variables as above
