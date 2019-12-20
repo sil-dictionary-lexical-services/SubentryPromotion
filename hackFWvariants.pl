@@ -51,6 +51,10 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	if ( (index($modeltag, $modifytag) != -1) or  (index($modifytag, $modeltag) != -1)) {
 	# use index because Xpath doesn't use regex and we use Xpath to query the FW project
 	# BUG: should check each modifytag against all the modeltags and other modifytags
+	#    If it is contained or contains any delete the modeltag and modifytag
+	#    Should also check modeltag against other modeltags:
+	#     if equal OK
+	#     if one contains the other die giving both modeltags
 		say STDERR "Use different tags for modeltag and modifytag. One contains the other in entry #$modelcount:";
 		say STDERR "modeltag$modelcount=", $modeltag;
 		say STDERR "tag$modelcount=", $modifytag;
