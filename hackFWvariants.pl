@@ -41,10 +41,8 @@ my $modeltag;
 my $modifytag;
 my $modelcount;
 for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
-	my $thistag = 'modeltag' . $modelcount;
-	$modeltag = $config->{$inisection}->{$thistag};
-	$thistag = 'modifytag' . $modelcount;
-	$modifytag = $config->{$inisection}->{$thistag};
+	$modeltag = $config->{$inisection}->{"modeltag$modelcount"};
+	$modifytag = $config->{$inisection}->{"modifytag$modelcount"};
 	if ( (!defined $modeltag) || (!defined $modifytag)) {
 		say STDERR "Skipping Model #$modelcount";
 		next;
@@ -71,10 +69,8 @@ foreach my $rt ($fwdatatree->findnodes(q#//rt#)) {
 	$rthash{$guid} = $rt;
 	}
 for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
-	my $thistag = 'modeltag' . $modelcount;
-	$modeltag = $config->{$inisection}->{$thistag};
-	$thistag = 'modifytag' . $modelcount;
-	$modifytag = $config->{$inisection}->{$thistag};
+	$modeltag = $config->{$inisection}->{"modeltag$modelcount"};
+	$modifytag = $config->{$inisection}->{"modifytag$modelcount"};
 	next if ( (!defined $modeltag) || (!defined $modifytag));
 	say "modeltag$modelcount=", $modeltag if $debug;
 	say "modifytag$modelcount=", $modifytag if $debug;
