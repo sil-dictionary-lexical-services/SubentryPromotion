@@ -45,24 +45,52 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	$modifytag = $config->{$inisection}->{"modifytag$modelcount"};
 	if ( (!defined $modeltag) || (!defined $modifytag)) {
 		say STDERR "Skipping Model #$modelcount";
+		delete $config->{$inisection}->{"modeltag$modelcount"};
+		delete $config->{$inisection}->{"modifytag$modelcount"};
 		next;
 		}
 
 	if ( (index($modeltag, $modifytag) != -1) or  (index($modifytag, $modeltag) != -1)) {
 	# use index because Xpath doesn't use regex and we use Xpath to query the FW project
-	# BUG: should check each modifytag against all the modeltags and other modifytags
-	#    If it is contained or contains any delete the modeltag and modifytag
-	#    Should also check modeltag against other modeltags:
-	#     if equal OK
-	#     if one contains the other die giving both modeltags
-		say STDERR "Use different tags for modeltag and modifytag. One contains the other in entry #$modelcount:";
+		say STDERR "Use different tags for modeltag and modifytag. One contains the other.";
 		say STDERR "modeltag$modelcount=", $modeltag;
-		say STDERR "tag$modelcount=", $modifytag;
+		say STDERR "modifytag$modelcount=", $modifytag;
 		say STDERR "Ignoring entry #$modelcount";
 		delete $config->{$inisection}->{"modeltag$modelcount"};
 		delete $config->{$inisection}->{"modifytag$modelcount"};
 		}
 	}
+
+#Check the modifytag against all the others
+for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
+	$modeltag = $config->{$inisection}->{"modeltag$modelcount"};
+	$modifytag = $config->{$inisection}->{"modifytag$modelcount"};
+	next if ( (!defined $modeltag) || (!defined $modifytag));
+	for (my $chckcount =1; $chckcount <=$modelmax; $chckcount++) {
+		next if $chckcount == $modelcount;
+		my $chckmodel = $config->{$inisection}->{"modeltag$chckcount"};
+		next if !defined $chckmodel;
+		my $chckmodify = $config->{$inisection}->{"modifytag$chckcount"};
+		next if !defined $chckmodify;
+		if ( (index($chckmodel, $modifytag) != -1) or (index($modifytag, $chckmodel) != -1)) {
+			say STDERR "Use different tags for modeltags and modifytags. One contains the other.";
+			say STDERR "modeltag$chckcount=", $chckmodel;
+			say STDERR "modifytag$modelcount=", $modifytag;
+			say STDERR "Ignoring entry #$modelcount";
+			delete $config->{$inisection}->{"modeltag$modelcount"};
+			delete $config->{$inisection}->{"modifytag$modelcount"};
+			}
+		if ( (index($chckmodify, $modifytag) != -1) or (index($modifytag, $chckmodify) != -1)) {
+			say STDERR "Modifytags should be unique One contains the other.";
+			say STDERR "modifytag$modelcount=", $modifytag;
+			say STDERR "modifytag$chckcount=", $chckmodify;
+			say STDERR "Ignoring entry #$modelcount";
+			delete $config->{$inisection}->{"modeltag$modelcount"};
+			delete $config->{$inisection}->{"modifytag$modelcount"};
+			}
+		}
+	}
+
 say "Processing fwdata file: $infilename";
 
 my $fwdatatree = XML::LibXML->load_xml(location => $infilename);
