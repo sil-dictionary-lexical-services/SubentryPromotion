@@ -2,6 +2,7 @@
 # perl ./hackFWvariants.pl
 
 my $debug=0;
+my $checktags=0; #Stop after checking the validity of the tags
 
 use 5.016;
 use strict;
@@ -91,6 +92,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		}
 	}
 
+die "config:". Dumper($config) if $checktags;
 say "Processing fwdata file: $infilename";
 
 my $fwdatatree = XML::LibXML->load_xml(location => $infilename);
