@@ -24,7 +24,7 @@ my $configfile = 'PromoteSubentries.ini';
  # outfilename=Nktest.new.fwdata
 my $inisection = 'hackFWvariants';
 my $config = Config::Tiny->read($configfile, 'crlf');
-#ToDo: should also use GetOpt::Long instead of setting variables as above
+#ToDo: should also use Getopt::Long instead of setting variables as above
 #ToDo: get the pathname of the INI file from $0 so that the two go together
 die "Couldn't find the INI file:$configfile\nQuitting" if !$config;
 my $infilename = $config->{$inisection}->{infilename};
