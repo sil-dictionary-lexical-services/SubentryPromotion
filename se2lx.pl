@@ -247,6 +247,7 @@ for my $oplline (@opledfile_in) {
 		# And if it is empty, then it will be the null string.
 		$snno = $snfields[-1];
 		print STDERR " $lxfield: sn=[$snno]\n" if $debug;
+		$snno = "" if ! defined $snno;
 
 		# We want to add a special field with unique text
 		# for the post-processing step.  For example:
