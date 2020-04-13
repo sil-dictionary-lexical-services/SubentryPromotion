@@ -116,6 +116,7 @@ GetOptions (
 use Config::Tiny;
 my $config = Config::Tiny->read($inifilename, 'crlf');
 die "Quitting: couldn't find the INI file $inifilename\n$USAGE\n" if !$config;
+die "Quitting: couldn't find the [$inisection] section in  the INI file $inifilename\n$USAGE\n" if !exists $config->{"$inisection"};
 # Subentry marker
 # If there is more than one Complex Form Type, need to
 # repeat this, and the code below that applies it.
