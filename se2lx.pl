@@ -235,7 +235,7 @@ for my $oplline (@opledfile_in) {
 		## Collect all the preceding sense numbers into an array.
 		## Each will include the space before it,
 		## and empty ones will be the null string.
-		## Still need to handle \snSE type markers.
+		## Still need to handle \snSE type markers. BB: We can ignore them.
 		## WLP: make it an array like the endmarkers?
 		## WLP: needs a (?<=#) look-behind like the $SubentryMkr
 		@snfields = $beforestuff =~ /(?<=#)\\$SenseMkr ([^#]*?)#/g;
@@ -253,6 +253,18 @@ for my $oplline (@opledfile_in) {
 		# for the post-processing step.  For example:
 		# \spec _DERIV_
 		# Check for pre-existing ?
+		
+		# If this \se matches its parent \lx, and there was no \hm on the parent,
+		# then this \se will become \hm 2 and the parent will be \hm 1
+		# (after we run add_hm.pl).
+		# Need to include $hmno =1 when writing the \mn.
+		# We don't need to put \hm 2 in the subentry, because
+		# it will get added by add_hm.pl after this script.
+		if ($subentry =~ /\\$SubentryMkr ([^#]*?)#/) {
+			if ($1 eq $lxfield && !$hmno) {
+				$hmno = 1;
+				}
+			}
 
 		# Finally, make the substitution that converts the
 		# subentry to an entry.
