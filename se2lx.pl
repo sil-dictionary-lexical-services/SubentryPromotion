@@ -107,7 +107,7 @@ my $scriptname = fileparse($0, qr/\.[^.]*/); # script name without the .pl
 use Getopt::Long;
 GetOptions (
 	'inifile:s'   => \(my $inifilename = "$scriptname.ini"), # ini filename
-	'section:s'   => \(my $inisection = "se2lx_lc"), # section of ini file to use
+	'section:s'   => \(my $inisection = "se2lx_se"), # section of ini file to use
 	'debug'       => \my $debug,
 	) or die $USAGE;
 
