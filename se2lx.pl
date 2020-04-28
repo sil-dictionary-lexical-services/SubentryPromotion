@@ -257,7 +257,9 @@ for my $oplline (@opledfile_in) {
 
 		# Finally, make the substitution that converts the
 		# subentry to an entry.
-		$subentry =~ s/\\$SubentryMkr ([^#]*?)#/\\lx $1#\\mn $lxfield$hmno $snno#\\spec $SpecialTag#/;
+		my $mnfield = "$lxfield$hmno";
+		$mnfield .= " $snno" if $snno;
+		$subentry =~ s/\\$SubentryMkr ([^#]*?)#/\\lx $1#\\mn $mnfield#\\spec $SpecialTag#/;
 		my $se = $1;
 
 		if ($DateMkr && $dt) { $subentry .= "\\$DateMkr $dt#" };
