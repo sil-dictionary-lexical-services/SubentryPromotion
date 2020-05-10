@@ -17,18 +17,21 @@ use XML::LibXML;
 use Config::Tiny;
 my $configfile = 'PromoteSubentries.ini';
  # ; PromoteSubentries.ini file looks like:
- # [hackFWvariants]
- # modeltag=Model Unspecified Complex Entry
- # modifytag=Complex_Form
- # infilename=Nktest.fwdata
- # outfilename=Nktest.new.fwdata
-my $inisection = 'hackFWvariants';
+ # [Var2Compform]
+ # FwdataIn=FwProject-before.fwdata
+ # FwdataOut=FwProject.fwdata
+ # modeltag1=Model Unspecified Complex Entry
+ # modifytag1=Complex_Form
+ # the modeltag and modifytag lines are repeated as needed
+ # numberofmodels=1
+
+my $inisection = 'Var2Compform';
 my $config = Config::Tiny->read($configfile, 'crlf');
 #ToDo: should also use Getopt::Long instead of setting variables as above
 #ToDo: get the pathname of the INI file from $0 so that the two go together
 die "Couldn't find the INI file:$configfile\nQuitting" if !$config;
-my $infilename = $config->{$inisection}->{infilename};
-my $outfilename = $config->{$inisection}->{outfilename};
+my $infilename = $config->{$inisection}->{FwdataIn};
+my $outfilename = $config->{$inisection}->{FwdataOut};
 
 my $lockfile = $infilename . '.lock' ;
 die "A lockfile exists: $lockfile\
