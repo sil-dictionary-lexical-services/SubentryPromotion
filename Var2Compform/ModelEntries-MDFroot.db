@@ -1,6 +1,5 @@
 \_sh v3.0  400  MDF 4.0
 
-
 \lx MainEntryForModels
 \coLX Pseudo Main Entry just as a root for Complex Forms
 \coLX Note that the <backslash>cet fields in the sub-entries below must be excluded in the mapping when this file is imported into FLEx.
@@ -8,43 +7,43 @@
 \ge Main entry as a  target of Complex Forms
 
 \se_cmpd Model Compound
-\cet _COMP_
+\cet _COMPOUND_
 \co This example entry shows the internal setup for a Compound Complex Form type
 \sn 1
 \ge Model Compound
 
 \se_ctr Model Contraction
-\cet _CONTR_
+\cet _CONTRACTION_
 \co  This example entry shows the internal setup for a Contraction Complex Form type
 \sn 1
 \ge Model Contraction
 
 \se_der Model Derivative
-\cet _DER_
+\cet _DERIVATIVE_
 \co This example entry shows the internal setup for a Derivative Complex Form type
 \sn 1
 \ge Model Derivative
 
 \se_id Model Idiom
-\cet _ID_
+\cet _IDIOM_
 \co  This example entry shows the internal setup for a Idiom Complex Form type
 \sn 1
 \ge Model Idiom
 
 \se_phrv Model Phrasal Verb
-\cet _PHV_
+\cet _PHRASAL_VERB_
 \co  This example entry shows the internal setup for a Phrasal Verb Complex Form type
 \sn 1
 \ge Model Phrasal Verb
 
 \se_say Model Saying
-\cet _SAY_
+\cet _SAYING_
 \co  This example entry shows the internal setup for a Saying Complex Form type
 \sn 1
 \ge Model Saying
 
 \se_unspec Model Unspecified Complex Form
-\cet _UNSPEC_
+\cet _UNSPECIFIED_
 \co  This example entry shows the internal setup for an Unspecified Complex Form type
 \sn 1
 \ge Model Unspecified Complex Form
