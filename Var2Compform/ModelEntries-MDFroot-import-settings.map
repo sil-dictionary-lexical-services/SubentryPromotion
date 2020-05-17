@@ -1,6 +1,6 @@
 
 <!--=====================================================================
-Created via the Lexical Import process: 5/7/2020 1:05:37 PM
+Created via the Lexical Import process: 2020-05-16 5:52:38 PM
 ===================================================================== -->
 <sfmMapping version="6.1">
 
@@ -41,7 +41,7 @@ Level Hierarchy
 <level name="Pronunciation" partOf="Entry Subentry" beginFields="ignore"/>
 <level name="SemanticDomain" partOf="Sense" beginFields="ignore"/>
 <level name="Sense" partOf="Entry Subentry" beginFields="sn" additionalFields="ge" multiFields="ge"/>
-<level name="Subentry" partOf="Entry" beginFields="se_id se_der se_phrv se_unspec se_say se_ctr se_cmpd" additionalFields="cet co" multiFields="cet co" uniqueFields="se_id se_der se_phrv se_unspec se_say se_ctr se_cmpd"/>
+<level name="Subentry" partOf="Entry" beginFields="se_id se_der se_phrv se_unspec se_say se_ctr se_cmpd" additionalFields="co" multiFields="co" uniqueFields="se_id se_der se_phrv se_unspec se_say se_ctr se_cmpd"/>
 <level name="Variant" partOf="Subentry Sense Entry" beginFields="ignore"/>
 </hierarchy>
 
@@ -61,32 +61,35 @@ Field Descriptions
 <field sfm="ge" name="Gloss" type="string" lang="English" >
 <meaning app="fw.sil.org" id="glos"/>
 </field>
-<field sfm="dt" name="Date Modified" type="date" lang="English" >
-<meaning app="fw.sil.org" id="mod"/>
-</field>
-<field sfm="se_cmpd" autoSfm="Auto_SFM_211" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_cmpd" autoSfm="Auto_SFM_43" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Compound"/>
+</field>
+<field sfm="cet" name=" " type="string" lang="English" exclude="True" autoImport="True" >
+<meaning app="fw.sil.org" id=""/>
 </field>
 <field sfm="co" name="Note (Subentry)" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="scom"/>
 </field>
-<field sfm="se_ctr" autoSfm="Auto_SFM_212" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_ctr" autoSfm="Auto_SFM_44" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Contraction"/>
 </field>
-<field sfm="se_der" autoSfm="Auto_SFM_213" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_der" autoSfm="Auto_SFM_45" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Derivative"/>
 </field>
-<field sfm="se_id" autoSfm="Auto_SFM_214" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_id" autoSfm="Auto_SFM_46" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Idiom"/>
 </field>
-<field sfm="se_phrv" autoSfm="Auto_SFM_215" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_phrv" autoSfm="Auto_SFM_47" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Phrasal Verb"/>
 </field>
-<field sfm="se_say" autoSfm="Auto_SFM_216" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_say" autoSfm="Auto_SFM_48" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Saying"/>
 </field>
-<field sfm="se_unspec" autoSfm="Auto_SFM_217" name="Subentry/Complex Form" type="string" lang="Vernacular" >
+<field sfm="se_unspec" autoSfm="Auto_SFM_49" name="Subentry/Complex Form" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="sub" funcWS="en" func="Unspecified Complex Form"/>
+</field>
+<field sfm="dt" name="Date Created" type="date" lang="Vernacular" >
+<meaning app="fw.sil.org" id="creat"/>
 </field>
 </fieldDescriptions>
 
@@ -100,10 +103,5 @@ In Field Markers
 Custom Field Descriptions
 ===================================================================== -->
 <CustomFieldDescriptions>
-<CustomField wsSelector="-1" big="False" flid="5002500" class="LexEntry" uiclass="Subentry" >
-<field sfm="cet" name="SPECFIELD" type="string" lang="English" >
-<meaning app="fw.sil.org" id="SPECFIELD"/>
-</field>
-</CustomField>
 </CustomFieldDescriptions>
 </sfmMapping>
