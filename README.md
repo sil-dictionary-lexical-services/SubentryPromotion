@@ -7,6 +7,6 @@ This repository contains several scripts and control files needed for that proce
 
 A model SFM record with sub-entries, and its mapping file provide model entries. Import the SFM record into your FLEx database. You might need to customize the record and/or mapping file before importing it. Check and modify the language mapping assignments and sub-entry types to match your needs.
 
-A Windows WSL bash wrapper script runs the Perl script that processes the FLEx database. It extracts the *.fwdata* file from a *.fwbackup* file. It runs the script to make the changes to the FLEx database and updates the *.fwbackup* file with the changed *.fwdata* file. The wrapper script requires the Windows version of the *7-Zip* program be installed on the computer to do the extraction and update.
+A Windows WSL bash wrapper script runs the Perl script that processes the FLEx database. It extracts the FLEx database file (*.fwdata*) from a FLEx backup file (*.fwbackup*). It runs the script to make the changes to the FLEx database and updates the backup file with the changed database file. The wrapper script requires that the Windows version of the *7-Zip* program be installed on the computer to do the extraction and update.
 
 This repository was migrated from Wes Peacock's Nkonya dictionary Script directory in June 2019.
