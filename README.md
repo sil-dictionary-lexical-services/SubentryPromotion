@@ -1,5 +1,5 @@
 # Subentry Promotion
-This repo contains scripts to process SFM lexical records to promote subentries to full entry records. The promoted entry has a marker (\mn) pointing back to the entry it was under.
+This repo contains scripts to process SFM lexical records to promote subentries to full entry records. The promoted entry has a marker (\mn) pointing back to the sense of the entry it was under.
 
 FLEx imports subentries only at the entry level.  In order to import a subentry under a sense, it needs to be recast as a variant (rather than as a complex form) in the SFM file, and then imported, and then changed from Variant to Complex Form in the .fwdata file after the import.
 
@@ -11,7 +11,7 @@ A Windows WSL bash wrapper script runs the Perl script that processes the FLEx d
 
 ### Improper Subentry Import Example
 
-In the sample file, the 1st homograph **mole1** has two senses, **1)** the small burrowing mammal and **2)** an enemy agent. The burrowing animal has a sub-entry *moleskin* and  *moleskin* has a sub-subentry of *moleskin bandage*. The enemy agent has a sub-entry *molehunt*. Here's the SFM record that represents that structure. For brevity, a few extraneous fields from the file have been removed. 
+In the sample file, the 1st homograph **mole1** has two senses, **1)** the small burrowing mammal and **2)** an enemy agent. The burrowing animal has a sub-entry *moleskin* and  *moleskin* has a sub-subentry of *moleskin bandage*. The enemy agent has a sub-entry *molehunt*. Here's the SFM record that represents that structure. For brevity, a few extraneous fields from the file have been removed. The simple version of the Sample file has been used.
 ```
 \lx mole
 \hm 1
@@ -37,7 +37,7 @@ When it's run without the sub-entry promotion scripts, the FLEx SFM Import proce
 
 For the above records, FLEx import interprets that main entry *mole* the burrowing animal has the following sub-entries, *moleskin, moleskin bandage,* and *molehunt*. The *moleskin bandage* has two senses, **1)** a patch of moleskin with an adhesive  (correct), and **2)**, an enemy agent (incorrect).
 
-Here's how that looks with basic FLEx formatting, and including the deleted fields:
+Here's how that looks with default FLEx formatting, and including the deleted fields:
 
 
 ![Incorrect Subentry-1](/IncorrectSubentryInterpretation-1.png?raw=true "Incorrect Subentry-1")
