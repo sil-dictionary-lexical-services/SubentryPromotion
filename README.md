@@ -40,23 +40,25 @@ For the above records, FLEx import interprets that main entry *mole* the burrowi
 Here's how that looks with basic FLEx formatting, and including the deleted fields:
 
 
-![](Incorrect Subentry Interpretation-1.png "")
+![Incorrect Subentry-1](/IncorrectSubentryInterpretation-1.png?raw=true "Incorrect Subentry-1")
 
 
 and after the other *mole* homographs,
 
 
-![](Incorrect Subentry Interpretation-2.png "")
+![Incorrect Subentry-2](/IncorrectSubentryInterpretation-2.png?raw=true "Incorrect Subentry-2")
 
 Here's what it looks like after the process, with the sub-entries corrected:
 
 
-![](Correct Subentry Interpretation-1.png "")
+![Correct Subentry-1](/CorrectSubentryInterpretation-1.png?raw=true "Correct Subentry-1")
 
 
 and  after the other *mole* homographs,
 
 
-![](Correct Subentry Interpretation-2.png "")
+![Correct Subentry-2](CorrectSubentryInterpretation-2.png?raw=true "Correct Subentry-2")
+
+***
 
 This repository was migrated from Wes Peacock's Nkonya dictionary Script directory in June 2019.
