@@ -35,7 +35,7 @@ In the sample file, the 1st homograph **mole1** has two senses, **1)** the small
 
 When it's run without the sub-entry promotion scripts, the FLEx SFM Import process puts all the sub-entries at the entry level, even if they should be under a sense. Any sense is taken as a sense of the previous entry or sub-entry.
 
-For the above records, FLEx import interprets that main entry *mole* the burrowing animal has the following sub-entries, *moleskin, moleskin bandage,* and *molehunt*. The *moleskin bandage* has two senses, **1)** a patch of moleskin with an adhesive  (correct), and **2)**, an enemy agent (inocorrect).
+For the above records, FLEx import interprets that main entry *mole* the burrowing animal has the following sub-entries, *moleskin, moleskin bandage,* and *molehunt*. The *moleskin bandage* has two senses, **1)** a patch of moleskin with an adhesive  (correct), and **2)**, an enemy agent (incorrect).
 
 Here's how that looks with basic FLEx formatting, and including the deleted fields:
 
