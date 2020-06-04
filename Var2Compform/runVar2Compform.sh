@@ -1,20 +1,9 @@
 #!/bin/bash
 # needs a Windows installation of 7-zip
 # set -x
+# To Do: use zip and unzip, then it shouldn't require WSL
 test -e /mnt/c/Program\ Files/7-Zip/7z.exe || {
-	echo >&2  "This script requires the 7-zip program for Windows"
-	echo
-	while true; do
-		read -p "Do you wish to download the program installer?" yn
-		case $yn in
-			[Yy]* ) wget -O 7z1900.exe https://sourceforge.net/projects/sevenzip/files/latest/download
-			echo "Install 7-zip and re-run the script"
-			break;;
-			[Nn]* ) echo "Install 7-zip and re-run the script"
-			exit;;
-			* ) echo "Please answer yes or no.";;
-		esac
-	done
+	echo >&2  "This script requires the 64-bit version of the 7-zip program for Windows"
 	exit 1;
 	}
 
