@@ -259,8 +259,13 @@ for my $oplline (@opledfile_in) {
 		# subentry to an entry.
 		my $mnfield = "$lxfield$hmno";
 		$mnfield .= " $snno" if $snno;
-		$subentry =~ s/\\$SubentryMkr ([^#]*?)#/\\lx $1#\\mn $mnfield#\\spec $SpecialTag#/;
-		my $se = $1;
+
+		if ($subentry =~ m/\\$SubentryMkr [^#]*#\\hm/) {
+			$subentry =~ s/\\$SubentryMkr ([^#]*)(#\\hm [^#]*)*#/\\lx $1$2#\\mn $mnfield#\\spec $SpecialTag#/;
+		}
+		else {
+			$subentry =~ s/\\$SubentryMkr ([^#]*?)#/\\lx $1#\\mn $mnfield#\\spec $SpecialTag#/;
+		}
 
 		if ($DateMkr && $dt) { $subentry .= "\\$DateMkr $dt#" };
 
