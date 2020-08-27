@@ -26,7 +26,8 @@
 \sn 3
 \ps n
 \de an investor who sells commodities, securities or futures in anticipation of a fall in prices
-\an bull1 3
+\lf ant
+\lv bull1 3
 \lc bear market
 \ps n
 \de a period when stock prices are dropping
@@ -43,9 +44,12 @@
 \de a state policeman (short for smokey bear, whose logo wears a hat similar to that of a policeman)
 \xv "The bear's pulling somebody off there at 74," reported someone else.
 \us slang, US
-\sy cop
-\sy finest
-\sy men in blue
+\lf syn
+\lv cop
+\lf syn
+\lv finest
+\lf syn
+\lv men in blue
 \sn 5
 \ps n
 \de  a block covered with coarse matting, used to scour the deck
@@ -81,8 +85,10 @@
 \ps vt
 \de to put up with something, to tolerate
 \xv I would never move to Texas -- I can't bear heat.
-\sy brook
-\sy endure
+\lf syn
+\lv brook
+\lf syn
+\lv endure
 \lp bear with
 \ps vt
 \de to be patient with
@@ -177,7 +183,8 @@
 \sn 3
 \ps n
 \de an investor who buys commodities, securities or futures in anticipation of a rise in prices
-\an bear1 3
+\lf ant
+\lv bear1 3
 \lc bull market
 \ps n
 \de a period when stock prices are rising
