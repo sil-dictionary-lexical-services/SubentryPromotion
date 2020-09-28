@@ -26,3 +26,5 @@ mv PromoteSubentries.ini  PromoteSubentries.bak
 perl -pE "s/FwdataIn.*/FwdataIn=$barefname-before.fwdata/; s/FwdataOut.*/FwdataOut=$fwdatafile/" PromoteSubentries.bak > PromoteSubentries.ini
 ./Var2Compform.pl
 zip "$backupfile" "$fwdatafile"  # 2>/dev/null
+echo ""
+echo "The file \"$fwdatafile\" inside \"$backupfile\" has been corrected."
