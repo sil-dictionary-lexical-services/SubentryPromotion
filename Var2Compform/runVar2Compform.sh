@@ -26,5 +26,9 @@ mv PromoteSubentries.ini  PromoteSubentries.bak
 perl -pE "s/FwdataIn.*/FwdataIn=$barefname-before.fwdata/; s/FwdataOut.*/FwdataOut=$fwdatafile/" PromoteSubentries.bak > PromoteSubentries.ini
 ./Var2Compform.pl
 zip "$backupfile" "$fwdatafile"  # 2>/dev/null
-echo ""
+echo
+rm $fwdatafile $barefname-before.fwdata
+echo "Work files \"$fwdatafile\" & \"$barefname-before.fwdata\" have been deleted"
+mv PromoteSubentries.bak PromoteSubentries.ini
+echo
 echo "The file \"$fwdatafile\" inside \"$backupfile\" has been corrected."
