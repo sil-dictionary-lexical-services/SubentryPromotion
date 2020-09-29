@@ -1,9 +1,10 @@
 #!/bin/bash
 # set -x
 # ignore the initial backup file
-ignore="${ignore:-BearBullMole-Initial-Empty.fwbackup}"
+ignore="${ignore:-Initial}"
 if [ $(ls  -1 *.{fwbackup,zip} 2>/dev/null |grep -v $ignore |wc -l) != 1 ] ; then
-	echo >&2   "This script requires exactly one fwbackup/zip file in this directory"
+	echo >&2 "This script requires exactly one fwbackup/zip file in this directory"
+	echo >&2 "It ignores all files with \"$ignore\" in the file name"
 	echo >&2 "It found:"
 	ls  -1 *.{fwbackup,zip} 2>/dev/null | grep -v $ignore | sed -e 's/^/     /'
 	if [ "$0" != "$BASH_SOURCE" ]; then # if the file is sourced, don't just exit
