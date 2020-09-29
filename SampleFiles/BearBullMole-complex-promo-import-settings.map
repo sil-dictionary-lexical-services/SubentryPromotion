@@ -1,6 +1,6 @@
 
 <!--=====================================================================
-Created via the Lexical Import process: 2020-08-28 7:32:00 PM
+Created via the Lexical Import process: 2020-09-29 12:14:40 PM
 ===================================================================== -->
 <sfmMapping version="6.1">
 
@@ -32,7 +32,7 @@ Language Definitions
 Level Hierarchy
 ===================================================================== -->
 <hierarchy>
-<level name="Entry" partOf="records" beginFields="lx" additionalFields="mn cf hm" multiFields="cf mn"/>
+<level name="Entry" partOf="records" beginFields="lx" additionalFields="mn spec hm cf" multiFields="mn spec cf"/>
 <level name="Etymology" partOf="Entry Subentry" beginFields="et"/>
 <level name="Example" partOf="Sense" beginFields="xv"/>
 <level name="ExampleTranslation" partOf="Example" beginFields="ignore"/>
@@ -82,9 +82,6 @@ Field Descriptions
 <field sfm="mn" name="Main Entry/Sense Reference" type="string" lang="Vernacular" >
 <meaning app="fw.sil.org" id="meref"/>
 </field>
-<field sfm="spec" name=" " type="string" lang="English" autoImport="True" >
-<meaning app="fw.sil.org" id=""/>
-</field>
 <field sfm="na" name="Anthro Note" type="string" lang="English" >
 <meaning app="fw.sil.org" id="anote"/>
 </field>
@@ -106,5 +103,10 @@ In Field Markers
 Custom Field Descriptions
 ===================================================================== -->
 <CustomFieldDescriptions>
+<CustomField wsSelector="-1" big="False" flid="5002500" class="LexEntry" uiclass="Entry" >
+<field sfm="spec" name="SubEntry Type Flag" type="string" lang="English" >
+<meaning app="fw.sil.org" id="SubEntry Type Flag"/>
+</field>
+</CustomField>
 </CustomFieldDescriptions>
 </sfmMapping>
