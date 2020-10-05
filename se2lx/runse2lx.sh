@@ -2,7 +2,7 @@
 # The next 3 variables should be set before the script is run
 # if they're not, a default is used
 dbname="${dbname:-BearBullMole-complex.db}"
-semarkers="${semarkers:-lc ld li lp selc selp}"
+semarkers="${semarkers:-sec sed sei sep sesec sesep}"
 inifile="${inifile:-Sample-lc.ini}"
 # promodbname is set to dbname with '-promo' inserted into if before the extension
 promodbname="${dbname%.*}" # take off extension

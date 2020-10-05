@@ -7,16 +7,16 @@
 \ps n
 \de a large omnivorous mammal, having shaggy hair, a very small tail, and flat feet; a member of family Ursidae
 \xv The bear was rooting through the garbage bin.
-\lc bear trap
+\sec bear trap
 \ps n
 \de a large trap used to catch a bear or other mammal, usually as a foot trap
-\lc teddy bear
+\sec teddy bear
 \ps n
 \de a plush toy in the shape of a bear
-\lc gummy bear
+\sec gummy bear
 \ps n
 \de a confectionery made of gelatin, in the miniature shape of a toy bear
-\li loaded for bear
+\sei loaded for bear
 \ps adj
 \de thoroughly equipped, as for a demanding task or confrontation
 \na from being equipped with the sort of heavy weaponry suitable for hunting large game
@@ -28,11 +28,11 @@
 \de an investor who sells commodities, securities or futures in anticipation of a fall in prices
 \lf ant
 \lv bull1 3
-\lc bear market
+\sec bear market
 \ps n
 \de a period when stock prices are dropping
 \xv The great bear market starting in 1929 scared a whole generation of investors.
-\ld bear
+\sed bear
 \hm 4
 \ps vt
 \va beared
@@ -77,7 +77,7 @@
 \ps vi
 \de to support, sustain, or endure
 \xv This stone bears most of the weight.
-\lp bear down
+\sep bear down
 \ps vi
 \de to intensify one's efforts
 \xv It's 9:41 58 degrees, and I'm flunking out. Time to bear down.
@@ -89,7 +89,7 @@
 \lv brook
 \lf syn
 \lv endure
-\lp bear with
+\sep bear with
 \ps vt
 \de to be patient with
 \xv Please bear with me a moment while I connect you to his office.
@@ -103,7 +103,7 @@
 \ps v
 \de to take effect; to have influence or force; to be relevant
 \xv How does this bear on the question?
-\lp bear witness
+\sep bear witness
 \ps v
 \xv He hesitated to bear witness against them in court for fear of reprisals by the felons' accomplices.
 
@@ -114,7 +114,7 @@
 \ps vi
 \de to move or extend in a specified direction
 \xv Carry on past the church and then bear left at the junction.
-\ld bearing
+\sed bearing
 \hm 2
 \ps n
 \de a heading or direction
@@ -139,7 +139,7 @@
 \ps vt
 \de to inspire boredom in somebody
 \xv Is life not a thousand times too short for us to bore ourselves?
-\ld bore
+\sed bore
 \ps n
 \de one who inspires boredom or lack of interest
 \xv He was a real bore; he kept on and on about how wonderful his former residence was.
@@ -174,7 +174,7 @@
 \sn 1
 \ps n
 \de adult male of domesticated cattle or oxen
-\lc bullseye
+\sec bullseye
 \ps n
 \de the centre of a target
 \sn 2
@@ -185,7 +185,7 @@
 \de an investor who buys commodities, securities or futures in anticipation of a rise in prices
 \lf ant
 \lv bear1 3
-\lc bull market
+\sec bull market
 \ps n
 \de a period when stock prices are rising
 \xv India's Bombay Stock Exchange Index had a major bull market trend for about five years from April 2003 to January 2008.
@@ -203,7 +203,7 @@
 \sn 1
 \ps n
 \de small insectivore that lives underground
-\lc moleskin
+\sec moleskin
 \ps n
 \de a heavy cotton fabric, woven and then sheared to create a short, soft pile on one side
 \na the fur of a mole is very short and soft
@@ -215,7 +215,7 @@
 \ps n
 \de an employee who spies for a competitor
 \us jargon, espionage
-\lc molehunt
+\sec molehunt
 \ps n
 \de an investigation attempting to identify agents who have infiltrated an organisation
 \us jargon, espionage
