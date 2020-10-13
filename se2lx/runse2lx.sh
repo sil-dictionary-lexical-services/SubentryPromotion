@@ -23,3 +23,4 @@ do
 done
 cp $to "$promodbname"
 rm $from $to
+echo "Database \"$promodbname\" now contains promoted subentries"
