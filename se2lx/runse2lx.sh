@@ -23,5 +23,5 @@ do
 done
 cp $to "$promodbname"
 rm $from $to
-echo "Database \"$promodbname\" now contains these promoted subentries (count & type)"
+echo "Database \"$promodbname\" now contains these promoted subentries (count & type):"
 grep '\\spec' <$promodbname|cut -c6-99 |sort|uniq -c
