@@ -40,18 +40,18 @@ For the above records, FLEx import interprets that main entry *mole* the burrowi
 Here's how that looks with default FLEx formatting, and including the deleted fields:
 
 
-![Incorrect Subentry-1](/IncorrectSubentryInterpretation-1.png?raw=true "Incorrect Subentry-1")
+![Incorrect Subentry-1](IncorrectSubentryInterpretation-1.png?raw=true "Incorrect Subentry-1")
 
 
 and after the other *mole* homographs,
 
 
-![Incorrect Subentry-2](/IncorrectSubentryInterpretation-2.png?raw=true "Incorrect Subentry-2")
+![Incorrect Subentry-2](IncorrectSubentryInterpretation-2.png?raw=true "Incorrect Subentry-2")
 
 Here's what it looks like after the process, with the sub-entries corrected:
 
 
-![Correct Subentry-1](/CorrectSubentryInterpretation-1.png?raw=true "Correct Subentry-1")
+![Correct Subentry-1](CorrectSubentryInterpretation-1.png?raw=true "Correct Subentry-1")
 
 
 and  after the other *mole* homographs,
