@@ -59,6 +59,11 @@ and  after the other *mole* homographs,
 
 ![Correct Subentry-2](CorrectSubentryInterpretation-2.png?raw=true "Correct Subentry-2")
 
+
+### Subentry Import Worked Examples
+
+The *SampleFiles* folder contains step by step How-to instructions for how to execute the Subentry Import process for both simple and complex subentries.
+
 ***
 
 This repository was migrated from Wes Peacock's Nkonya dictionary Script directory in June 2019.
