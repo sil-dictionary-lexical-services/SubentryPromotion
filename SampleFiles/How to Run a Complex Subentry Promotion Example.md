@@ -36,7 +36,7 @@ This script reads *BearBullMole-complex.db* and writes to *BearBullMole-complex-
 
 12. In FLEx use the "Restore a Project" function of the Project Management to load the corrected project from the *.fwbackup* file in your working directory. If you restore the project to a different name, you can compare the project before and after.
 
-13. The FLEx database has a field named *"SubEntry Type Flag"*. The special markers mentioned above are stored in this field. If the final import is correct, you can delete that field from the database using the *"Tools|Configure|Custom Fields"* menu item.
+13. The FLEx database has a field named *"SubEntry Type Flag"*. The special markers mentioned above are stored in this field. If the final import is correct, you can delete that field from the database using the *"Tools|Configure|Custom Fields"* menu item. This menu item is available in the *Lexical Edit* and *Browse* modes.
 
 14. You can also delete the entry *MainEntryForModels* and the model subentries, i.e., *Model Compound*, etc.
 
