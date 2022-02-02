@@ -265,6 +265,8 @@ for my $oplline (@opledfile_in) {
 		}
 		else {
 			$subentry =~ s/\\$SubentryMkr ([^#]*?)#/\\lx $1#\\mn $mnfield#\\spec $SpecialTag#/;
+			# if the subentry had a trailing homograph number, make it a homograph field
+			$subentry =~s/(\\lx [^#]*?)(\d+)#/$1#\\hm $2#/;
 		}
 
 		if ($DateMkr && $dt) { $subentry .= "\\$DateMkr $dt#" };
