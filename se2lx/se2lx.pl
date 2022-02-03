@@ -48,7 +48,7 @@ Here is a sample INI file with a couple of sections
 # A sample ini file for the se2lx.pl script
 [se2lx_lc]
 SubentryMkr=lc
-SenseMkr=ms
+ParentsSenseMkr=ms
 SpecialTag=_COMPOUND_
 EndMkrs=lx, lc, ld,li, , ls,ms,sc,rx,rtx,,,dt
 # If you want the subentry to inherit the date include the next line
@@ -56,7 +56,7 @@ DateMkr=dt
 
 [se2lx_ls]
 SubentryMkr=ls
-SenseMkr=ms
+ParentsSenseMkr=ms
 SpecialTag=_SAYING_
 EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx,dt
 
@@ -76,7 +76,7 @@ EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx,dt
 #						Mandatory ini items with examples:
 #							[se2lx_ls]
 #							SubentryMkr=ls
-#							SenseMkr=ms
+#							ParentsSenseMkr=ms
 #							SpecialTag=_SAYING_
 #							EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx
 #						Optional ini items:
@@ -84,7 +84,7 @@ EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx,dt
 #
 #						Clean up EndMkrs
 #						set default ini name to match the script name
-#						simplify & capture nondigit regex for SenseMkr error check
+#						simplify & capture nondigit regex for ParentsSenseMkr error check
 
 # Bugs/Enhancements:
 # 		Need to check for null strings on INI file variables
@@ -144,7 +144,7 @@ $config->{"$inisection"}->{EndMkrs} =~ s/,/\|/g; # alternatives  are '|' in Rege
 my $EndMkrRE = '\\\\(' . $config->{"$inisection"}->{EndMkrs} . ')[# ]';
 # need 4 \\\\ because variable will be evaluated
 # EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx -> '\\\\(lx|ls|lc|ld|li|ms|ps|sc|rx|rtx)[# ]'
-my $SenseMkr = $config->{"$inisection"}->{SenseMkr};
+my $ParentsSenseMkr = $config->{"$inisection"}->{ParentsSenseMkr};
 
 # generate array of with one SFM record per line (opl)
 my @opledfile_in;
@@ -168,7 +168,7 @@ say STDERR "inisection:$inisection" if $debug;
 say STDERR "inifile:$inifilename" if $debug;
 say STDERR "EndMkrRE :$EndMkrRE" if $debug;
 say STDERR "SubentryMkr:$SubentryMkr" if $debug;
-say STDERR "SenseMkr:$SenseMkr" if $debug;
+say STDERR "ParentsSenseMkr:$ParentsSenseMkr" if $debug;
 say STDERR "DateMkr:$DateMkr" if $debug;
 say STDERR "SpecialTag:$SpecialTag" if $debug;
 if ($debug) { say STDERR "config:", Dumper($config) };
@@ -209,14 +209,13 @@ for my $oplline (@opledfile_in) {
 
 	# Do some error checking on the Sense field on the current record
 	# Check for empty sense fields
-	# WLP: needs to change '\sn' literal to $SenseMkr
-	if ($oplline =~ /\\$SenseMkr#/) {
-		print STDERR "Empty \\$SenseMkr field(s) found in \\lx $lxfield$hmno \nThe script will continue, but you may get better results if you first ensure that all sense fields are populated and unique.\n";
+	if ($oplline =~ /\\$ParentsSenseMkr#/) {
+		print STDERR "Empty \\$ParentsSenseMkr field(s) found in \\lx $lxfield$hmno \nThe script will continue, but you may get better results if you first ensure that all sense fields are populated and unique.\n";
 		}
 
 	# Check for non-digits in sense fields
-	if ($oplline =~ /(\\$SenseMkr [0-9\.]*[^0-9\.#][^#]*)#/) {
-		print STDERR "Non-digit content \\$SenseMkr field(s) \"$1\" found in \\lx $lxfield$hmno\nThe script will continue, but you may get better results if you first ensure that all sense fields consist only of digits and full stops.\n";
+	if ($oplline =~ /(\\$ParentsSenseMkr [0-9\.]*[^0-9\.#][^#]*)#/) {
+		print STDERR "Non-digit content \\$ParentsSenseMkr field(s) \"$1\" found in \\lx $lxfield$hmno\nThe script will continue, but you may get better results if you first ensure that all sense fields consist only of digits and full stops.\n";
 		}
 
 	# Match from $SubentryMkr up until whatever comes immediately after the subentry.
@@ -239,7 +238,7 @@ for my $oplline (@opledfile_in) {
 		## Still need to handle \snSE type markers.
 		## WLP: make it an array like the endmarkers?
 		## WLP: needs a (?<=#) look-behind like the $SubentryMkr
-		@snfields = $beforestuff =~ /(?<=#)\\$SenseMkr ([^#]*?)#/g;
+		@snfields = $beforestuff =~ /(?<=#)\\$ParentsSenseMkr ([^#]*?)#/g;
 
 		# Set this to the last element of the array,
 		# that is, the sense number of the last sense
