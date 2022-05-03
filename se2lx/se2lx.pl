@@ -210,7 +210,7 @@ for my $oplline (@opledfile_in) {
 	# Do some error checking on the Sense field on the current record
 	# Check for empty sense fields
 	if ($oplline =~ /\\$ParentsSenseMkr#/) {
-		print STDERR "Empty \\$ParentsSenseMkr field(s) found in \\lx $lxfield$hmno \nThe script will continue, but you may get better results if you first ensure that all sense fields are populated and unique.\n";
+		print STDERR "Empty \\$ParentsSenseMkr field(s) found in \\lx $lxfield$hmno\nThe script will continue, but you may get better results if you first ensure that all sense fields are populated and unique.\n";
 		}
 
 	# Check for non-digits in sense fields
