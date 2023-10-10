@@ -172,7 +172,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		if ($seModifyOwnerrt->getAttribute('class') ne 'LexEntry') {
 			say STDERR "";
 			say STDERR "Model #$modelcount, Entry #$modifycount,\"$modifytag\"  wasn't in a Lexical Entry. It will be ignored.";
-			say "Model #$modelcount, Entry #$modifycount,\"$modifytag\" was not processed. Check the error listing";
+			say "Model #$modelcount, Entry #$modifycount,\"$modifytag\" was not processed. See the error log.";
 			next;
 			}
 		say  "Model #$modelcount, Entry #$modifycount, modifying to a \"$modelEntryTypeName\" for:";
@@ -180,7 +180,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		if (!$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')) {
 			say STDERR "Model #$modelcount, Entry #$modifycount, Tag \"$modifytag\" is a main entry (no EntryRefs):";
 			say STDERR "    ", displaylexentstring($seModifyOwnerrt);
-			say "No changes made to that entry see error log.";
+			say "No changes made to that entry see the error log.";
 			next;
 			}
 		my $entryreftomodify = $rthash{$seModifyOwnerrt->findvalue('./EntryRefs/objsur/@guid')};
@@ -188,6 +188,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 		if (!$entryreftomodify->findnodes('./ComponentLexemes')) {
 			say STDERR "Found \"$modifytag\" but no Component Lexemes in :";
 			say STDERR "    ", displaylexentstring($seModifyOwnerrt);
+			say "No changes made to that entry see the error log.";
 			next;
 			}
 
