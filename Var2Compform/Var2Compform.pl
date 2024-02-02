@@ -16,8 +16,8 @@ use open qw/:std :utf8/;
 use XML::LibXML;
 
 use Config::Tiny;
-my $configfile = 'PromoteSubentries.ini';
- # ; PromoteSubentries.ini file looks like:
+my $configfile = 'Var2Compform.ini';
+ # ; Var2Compform.ini file looks like:
  # [Var2Compform]
  # FwdataIn=FwProject-before.fwdata
  # FwdataOut=FwProject.fwdata
