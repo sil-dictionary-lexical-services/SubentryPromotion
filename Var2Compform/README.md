@@ -1,6 +1,8 @@
 # Var2Compform
 Script to re-create subentries of senses after the SFM file has been imported into FLEx.
 
+Prepare a folder just for the Var2Comp process.  It is best to have no extra files in the folder.
+
 For detailed instructions see: https://sites.google.com/sil.org/importing-sfm-to-flex/workflow/6-detour-subentries-of-senses/b-subentry-promotion-instructions?authuser=0
 
 ### Var2Compform.ini
