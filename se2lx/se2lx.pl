@@ -141,7 +141,7 @@ $config->{"$inisection"}->{EndMkrs} =~ s/ //g; # no spaces in the end marker lis
 $config->{"$inisection"}->{EndMkrs} =~ s/,+/,/g; # no empty markers
 $config->{"$inisection"}->{EndMkrs} =~ s/,$//; # no empty markers (cont.)
 $config->{"$inisection"}->{EndMkrs} =~ s/,/\|/g; # alternatives  are '|' in Regexes
-my $EndMkrRE = '\\\\(' . $config->{"$inisection"}->{EndMkrs} . ')[# ]';
+my $EndMkrRE = '(?<=#)\\\\(' . $config->{"$inisection"}->{EndMkrs} . ')[# ]';
 # need 4 \\\\ because variable will be evaluated
 # EndMkrs=lx,ls,lc,ld,li,ms,ps,sc,rx,rtx -> '\\\\(lx|ls|lc|ld|li|ms|ps|sc|rx|rtx)[# ]'
 my $ParentsSenseMkr = $config->{"$inisection"}->{ParentsSenseMkr};
