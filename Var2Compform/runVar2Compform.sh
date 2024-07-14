@@ -28,7 +28,7 @@ perl -pE "s/FwdataIn.*/FwdataIn=$barefname-before.fwdata/; s/FwdataOut.*/FwdataO
 ./Var2Compform.pl
 zip "$backupfile" "$fwdatafile"  # 2>/dev/null
 echo
-rm $fwdatafile $barefname-before.fwdata
+rm "$fwdatafile" "$barefname-before.fwdata"
 echo "Work files \"$fwdatafile\" & \"$barefname-before.fwdata\" have been deleted"
 mv PromoteSubentries.bak Var2Compform.ini
 echo
