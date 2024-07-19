@@ -16,11 +16,13 @@ modeltag2=Model Contraction
 modifytag2=_CONTRACTION_
 numberofmodels=2
 ```
-Do not change the FwdataIn and FwdataOut this is done automatically by the script.
+Do not change the FwdataIn and FwdataOut, as this is done automatically by the script.
 
 Create model/modify pairs for each subentry type:
 * The **model** tags should match the data in your custom SPEC field for your model entries in FLEx.
 * The **modify** tags should match the data in the \spec field in your SFM file.
+
+The shell script sends the information log messages to the file named *Var2Compform-log.txt*
 
 If you change the number of model/modify pairs make sure they are numbered correctly and
 The _numberofmodels_ field at the bottom matches the number of fields.

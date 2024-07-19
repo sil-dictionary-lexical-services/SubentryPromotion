@@ -25,7 +25,8 @@ mv "$fwdatafile" "$barefname-before.fwdata"
 
 mv Var2Compform.ini  PromoteSubentries.bak
 perl -pE "s/FwdataIn.*/FwdataIn=$barefname-before.fwdata/; s/FwdataOut.*/FwdataOut=$fwdatafile/" PromoteSubentries.bak > Var2Compform.ini
-./Var2Compform.pl
+./Var2Compform.pl >Var2Compform-log.txt
+echo A log of the changes made is available in Var2Compform-log.txt
 zip "$backupfile" "$fwdatafile"  # 2>/dev/null
 echo
 rm "$fwdatafile" "$barefname-before.fwdata"
