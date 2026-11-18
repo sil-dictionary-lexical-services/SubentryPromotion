@@ -22,7 +22,7 @@ This script reads *BearBullMole-simple.db* and writes to *BearBullMole-simple-pr
 7. In FLEx, use the Import SFM feature to import the *BearBullMole-simple-promo.db*. Here are some things to note:
    * Use the *.map* file that has already been created.
    * The final Import Log for this example has some Parts of Speech and Usages that aren't in the initial FLEx project. For an real-life import, you would correct typos in the SFM database or make changes to the initial empty FLEx project.
-   * The final Import Log also notes some missing Lexical Relations and Cross References. In real-life, you would be correct these in the SFM database, and re-run the import.
+   * The final Import Log also notes some missing Lexical Relations and Cross References. In real-life, you would correct these in the SFM database, and re-run the import.
 
 8. In FLEx, use  *File|Project Management|Back up this Project...* to back up the project. The dialog box has an item that specifies where the *.fwbackup* file will be stored. Take note of that location so you can copy it later.
 
