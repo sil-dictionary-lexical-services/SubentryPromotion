@@ -30,7 +30,7 @@ my $inisection = 'Var2Compform';
 my $config = Config::Tiny->read($configfile, 'crlf');
 #ToDo: should also use Getopt::Long instead of setting variables as above
 #ToDo: get the pathname of the INI file from $0 so that the two go together
-die "Couldn't find the INI file:$configfile\nQuitting" if !$config;
+die "Couldn't find the INI file:$configfile or the $inisection section within it.\nQuitting" if (!$config || ! exists $config->{$inisection}) ;
 my $infilename = $config->{$inisection}->{FwdataIn};
 my $outfilename = $config->{$inisection}->{FwdataOut};
 
