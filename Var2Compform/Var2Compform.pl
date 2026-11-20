@@ -97,6 +97,7 @@ for ($modelcount =1; $modelcount <=$modelmax; $modelcount++) {
 	}
 
 die "config:". Dumper($config) if $checktags;
+say "Log of Var2Compform.pl run on ", scalar localtime();
 say "Processing fwdata file: $infilename";
 
 my $fwdatatree = XML::LibXML->load_xml(location => $infilename);
